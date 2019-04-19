@@ -1,8 +1,8 @@
 package bean;
 
-import cn.nosrc.sheet.annotation.ColRole;
-import cn.nosrc.sheet.annotation.SheetSchema;
-import cn.nosrc.sheet.enums.EType;
+import com.github.pysrc.sheet.annotation.ColRole;
+import com.github.pysrc.sheet.annotation.SheetSchema;
+import com.github.pysrc.sheet.enums.EType;
 
 import java.util.Date;
 

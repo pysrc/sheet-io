@@ -9,9 +9,9 @@
 ```java
 package bean;
 
-import cn.nosrc.sheet.annotation.ColRole;
-import cn.nosrc.sheet.annotation.SheetSchema;
-import cn.nosrc.sheet.enums.EType;
+import com.github.pysrc.sheet.annotation.ColRole;
+import com.github.pysrc.sheet.annotation.SheetSchema;
+import com.github.pysrc.sheet.enums.EType;
 
 import java.util.Date;
 
@@ -59,19 +59,21 @@ public class Item {
     }
 
     // getter/setter 省略
+    
     @Override
     public String toString() {
         return String.format("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s", sts, stn, nts, ntn, drp, std, dts, dtd, slf);
     }
 }
 
+
 ```
 
 #### 基本导入/出测试
 
 ```java
-import cn.nosrc.sheet.impl.SheetRead;
-import cn.nosrc.sheet.impl.SheetWrite;
+import com.github.pysrc.sheet.impl.SheetRead;
+import com.github.pysrc.sheet.impl.SheetWrite;
 import bean.Item;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -92,7 +94,8 @@ public class TestBase {
         items.add(new Item("字符测试2", "46", 8.4, 78.45, "项目1", "2019/10/04", new Date(), new Date(), "Hi"));
         OutputStream os = new FileOutputStream("E:/xxx.xlsx");
         Workbook wb = new XSSFWorkbook();
-        new SheetWrite<>(wb, Item.class).write(items);
+        new SheetWrite<>(wb, Item.class)
+                .write(items);
         wb.write(os);
         wb.close();
         os.close();
@@ -101,7 +104,8 @@ public class TestBase {
     public static void in() throws Exception {
         InputStream is = new FileInputStream("E:/xxx.xlsx");
         Workbook wb = new XSSFWorkbook(is);
-        List<Item> read = new SheetRead<Item>(wb, Item.class).read();
+        List<Item> read = new SheetRead<Item>(wb, Item.class)
+                .read();
         wb.close();
         is.close();
         for (Item i : read) {
@@ -115,7 +119,8 @@ public class TestBase {
     }
 }
 
+
 ```
 
-**更多测试见src/test文件夹**
+**更多测试见：[示例](https://github.com/pysrc/sheet-io/tree/master/src/test/java)**
 

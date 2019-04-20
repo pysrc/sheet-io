@@ -2,6 +2,17 @@
 
 类似的东西挺多的，这个仓库仅仅根据实际使用总结出来的工具类
 
+### Maven
+
+```xml
+<dependency>
+  <groupId>com.github.pysrc</groupId>
+  <artifactId>sheet-io</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+
 ### Example
 
 #### Bean类

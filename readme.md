@@ -6,9 +6,9 @@
 
 ```xml
 <dependency>
-  <groupId>com.github.pysrc</groupId>
-  <artifactId>sheet-io</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>com.github.pysrc</groupId>
+    <artifactId>sheet-io</artifactId>
+    <version>1.0</version>
 </dependency>
 ```
 

@@ -150,7 +150,7 @@ public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
 
     /**
      * schema更新
-     * @param schema
+     * @param schema bean属性上注解对应的类
      */
     public void updateSchema(ISchema schema){
         for(Column column:columns){

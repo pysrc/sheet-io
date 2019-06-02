@@ -148,6 +148,16 @@ public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
         return this;
     }
 
+    /**
+     * schema更新
+     * @param schema
+     */
+    public void updateSchema(ISchema schema){
+        for(Column column:columns){
+            schema.update(column);
+        }
+    }
+
     @Override
     public abstract List<T> read() throws IllegalAccessException, InstantiationException, NoSuchFieldException, ParseException;
 

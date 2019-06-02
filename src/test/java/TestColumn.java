@@ -22,7 +22,12 @@ public class TestColumn {
         OutputStream os = new FileOutputStream("E:/xxx.xlsx");
         Workbook wb = new XSSFWorkbook();
         AbstractSheet<Item> write = new SheetWrite<>(wb, Item.class);
-        write.getColumns().get(8).setValueList(new String[]{"Hello", "Hi", "Ok", "Bye"});
+//        write.getColumns().get(8).setValueList(new String[]{"Hello", "Hi", "Ok", "Bye"});
+        write.updateSchema((column)->{
+            if(column.getField().equals("slf")){
+                column.setValueList(new String[]{"Hello", "Hi", "Ok", "Bye","SchemaTest"});
+            }
+        });
         write.write(items);
         wb.write(os);
         wb.close();

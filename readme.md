@@ -8,7 +8,7 @@
 <dependency>
     <groupId>com.github.pysrc</groupId>
     <artifactId>sheet-io</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

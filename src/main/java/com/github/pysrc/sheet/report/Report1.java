@@ -1,6 +1,7 @@
 package com.github.pysrc.sheet.report;
 
 import com.github.pysrc.sheet.AbstractSheet;
+import com.github.pysrc.sheet.ISchema;
 import com.github.pysrc.sheet.style.*;
 import com.github.pysrc.sheet.style.*;
 
@@ -29,4 +30,8 @@ public class Report1<T> extends AbstractReport<T> {
 
     }
 
+    @Override
+    public void updateSchema(ISchema schema) {
+
+    }
 }

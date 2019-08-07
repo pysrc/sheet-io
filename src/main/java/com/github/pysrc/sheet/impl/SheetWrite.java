@@ -1,8 +1,6 @@
 package com.github.pysrc.sheet.impl;
 
-import com.github.pysrc.sheet.AbstractSheet;
-import com.github.pysrc.sheet.Column;
-import com.github.pysrc.sheet.ICellStyle;
+import com.github.pysrc.sheet.*;
 import com.github.pysrc.sheet.exception.NullDataClassException;
 import com.github.pysrc.sheet.exception.NullWorkbookException;
 import com.github.pysrc.sheet.style.StyleDefault;
@@ -22,10 +20,6 @@ public class SheetWrite<T> extends AbstractSheet<T> {
         this.rowStyles.add(new StyleDefault());
     }
 
-    @Override
-    public List<T> read() throws IllegalAccessException, InstantiationException, NoSuchFieldException, ParseException {
-        return null;
-    }
 
     @Override
     public void write(List<T> datas) throws IllegalAccessException, NoSuchFieldException, ParseException {
@@ -79,4 +73,8 @@ public class SheetWrite<T> extends AbstractSheet<T> {
         }
     }
 
+    @Override
+    public List<T> read() throws IllegalAccessException, InstantiationException, NoSuchFieldException, ParseException {
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 package com.github.pysrc.sheet.report;
 
 import com.github.pysrc.sheet.AbstractSheet;
+import com.github.pysrc.sheet.ISchema;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
@@ -67,6 +68,11 @@ public class Report2<T> extends AbstractReport<T> {
 
     @Override
     public void after() {
+
+    }
+
+    @Override
+    public void updateSchema(ISchema schema) {
 
     }
 }

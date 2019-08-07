@@ -1,4 +1,5 @@
 import com.github.pysrc.sheet.AbstractSheet;
+import com.github.pysrc.sheet.IWrite;
 import com.github.pysrc.sheet.impl.SheetRead;
 import com.github.pysrc.sheet.impl.SheetWrite;
 import bean.Item;
@@ -21,7 +22,7 @@ public class TestColumn {
         items.add(new Item("字符测试2", "46", 8.4, 78.45, "项目1", "2019/10/04", new Date(), new Date(), "Hi"));
         OutputStream os = new FileOutputStream("E:/xxx.xlsx");
         Workbook wb = new XSSFWorkbook();
-        AbstractSheet<Item> write = new SheetWrite<>(wb, Item.class);
+        IWrite<Item> write = new SheetWrite<Item>(wb, Item.class);
 //        write.getColumns().get(8).setValueList(new String[]{"Hello", "Hi", "Ok", "Bye"});
         write.updateSchema((column)->{
             if(column.getField().equals("slf")){

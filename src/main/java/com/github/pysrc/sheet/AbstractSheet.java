@@ -8,11 +8,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.lang.reflect.Field;
-import java.text.ParseException;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
+public abstract class AbstractSheet<T> implements IWrite<T>,IRead<T>{
     protected Workbook workbook = null;
     protected Sheet sheet = null;
     protected Class<T> dataClass = null;
@@ -26,6 +25,7 @@ public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
     protected List<ICellStyle> rowStyles = new ArrayList<>();
     protected String filter = ".*|\\n.*";
     protected boolean isDone = false;
+    protected IReadValidator validator;
 
     public AbstractSheet<T> addRowStyle(ICellStyle rowStyle) {
         this.rowStyles.add(rowStyle);
@@ -75,6 +75,28 @@ public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
         }
     }
 
+    /**
+     * 写入时更新Schema
+     * @param schema
+     */
+    @Override
+    public void updateSchema(ISchema schema) {
+        for(Column column:columns){
+            schema.update(column);
+        }
+    }
+
+    /**
+     * 读时校验
+     * @param validator
+     */
+    @Override
+    public AbstractSheet<T> setValidator(IReadValidator validator) {
+        this.validator = validator;
+        return this;
+    }
+
+
     public AbstractSheet(Workbook workbook, Class<T> dataClass) throws NullDataClassException, NullWorkbookException {
         if (workbook == null) {
             throw new NullWorkbookException();
@@ -86,6 +108,9 @@ public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
         this.dataClass = dataClass;
         classLoad();
         annotationScan();
+        this.validator = (row, column,call)->{
+            return true;
+        };
     }
 
 
@@ -147,23 +172,6 @@ public abstract class AbstractSheet<T> implements IWrite<T>, IRead<T> {
         }
         return this;
     }
-
-    /**
-     * schema更新
-     * @param schema bean属性上注解对应的类
-     */
-    public void updateSchema(ISchema schema){
-        for(Column column:columns){
-            schema.update(column);
-        }
-    }
-
-    @Override
-    public abstract List<T> read() throws IllegalAccessException, InstantiationException, NoSuchFieldException, ParseException;
-
-    @Override
-    public abstract void write(List<T> datas) throws IllegalAccessException, NoSuchFieldException, ParseException;
-
 
     // getter/setter
 

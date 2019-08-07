@@ -3,7 +3,6 @@ package com.github.pysrc.sheet.impl;
 import com.github.pysrc.sheet.AbstractSheet;
 import com.github.pysrc.sheet.Column;
 import com.github.pysrc.sheet.IScan;
-import com.github.pysrc.sheet.enums.EType;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -14,8 +13,6 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.github.pysrc.sheet.enums.EType.*;
 
 
 public class ScanReadDefault<T> implements IScan<T> {

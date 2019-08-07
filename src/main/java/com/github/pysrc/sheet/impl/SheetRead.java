@@ -1,10 +1,10 @@
 package com.github.pysrc.sheet.impl;
 
-import com.github.pysrc.sheet.AbstractSheet;
-import com.github.pysrc.sheet.Column;
+import com.github.pysrc.sheet.*;
 import com.github.pysrc.sheet.exception.NullDataClassException;
 import com.github.pysrc.sheet.exception.NullSheetException;
 import com.github.pysrc.sheet.exception.NullWorkbookException;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -22,7 +22,7 @@ public class SheetRead<T> extends AbstractSheet<T> {
     @Override
     public List<T> read() throws IllegalAccessException, InstantiationException, NoSuchFieldException, ParseException {
 
-        if(!isDone){
+        if (!isDone) {
             done();
         }
 
@@ -52,16 +52,24 @@ public class SheetRead<T> extends AbstractSheet<T> {
             }
             T d = dataClass.newInstance();
             curCol = startCol;
+            boolean vali = true;
             for (Column c : columns) {
-                scan.scan(this, c, d, fieldMap.get(c.getField()), row.getCell(curCol++));
+                Cell cell = row.getCell(curCol++);
+                if (this.validator.pass(i, c, cell)) {
+                    scan.scan(this, c, d, fieldMap.get(c.getField()), cell);
+                } else {
+                    vali = false;
+                }
             }
-            res.add(d);
+            if (vali) {
+                res.add(d);
+            }
         }
         return res;
     }
 
     @Override
-    public void write(List<T> datas) {
+    public void write(List<T> datas) throws IllegalAccessException, NoSuchFieldException, ParseException {
 
     }
 }

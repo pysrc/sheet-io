@@ -1,6 +1,7 @@
 package com.github.pysrc.sheet.report;
 
 import com.github.pysrc.sheet.AbstractSheet;
+import com.github.pysrc.sheet.ISchema;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -43,5 +44,10 @@ public class Report3<T> extends AbstractReport {
             row.createCell(base.getStartCol()+i).setCellStyle(cellStyle);
         }
         row.getCell(base.getStartCol()).setCellValue(tail);
+    }
+
+    @Override
+    public void updateSchema(ISchema schema) {
+
     }
 }
